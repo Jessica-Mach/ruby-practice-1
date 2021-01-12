@@ -1,3 +1,5 @@
+require "prawn"
+
 #Generate Bingo numbers to column arrays
 b_col = (1..15).to_a.sample(5)
 i_col = (16..30).to_a.sample(5)
@@ -32,3 +34,8 @@ bingo_card = <<-BINGO
 BINGO
 
 puts bingo_card
+
+Prawn::Document.generate("bingo.pdf") do
+	define_grid(columns: 5, rows: 6)
+	grid.show_all
+end
